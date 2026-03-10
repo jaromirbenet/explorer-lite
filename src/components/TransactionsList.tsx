@@ -1,8 +1,8 @@
 import { Box, Heading, Spinner, Text } from '@chakra-ui/react'
 import { useTransactions } from '../hooks/useTransactions'
-import TransactionsContent from './TransactionsContent'
+import { TransactionsContent } from './TransactionsContent'
 
-const TransactionsList = () => {
+export const TransactionsList = () => {
   const { data: transactions = [], isLoading, error } = useTransactions(10)
 
   if (isLoading) {
@@ -35,5 +35,3 @@ const TransactionsList = () => {
     </Box>
   )
 }
-
-export default TransactionsList

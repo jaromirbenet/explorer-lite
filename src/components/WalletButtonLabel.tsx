@@ -3,7 +3,7 @@ interface WalletButtonLabelProps {
   connected: boolean
 }
 
-const WalletButtonLabel = ({ connecting, connected }: WalletButtonLabelProps) => {
+export const WalletButtonLabel = ({ connecting, connected }: WalletButtonLabelProps) => {
   if (connecting) {
     return <>Connecting...</>
   }
@@ -14,5 +14,3 @@ const WalletButtonLabel = ({ connecting, connected }: WalletButtonLabelProps) =>
 
   return <>Connect Wallet</>
 }
-
-export default WalletButtonLabel

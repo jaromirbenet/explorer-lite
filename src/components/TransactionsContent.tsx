@@ -1,12 +1,12 @@
 import { Box, Text } from '@chakra-ui/react'
 import type { Transaction } from '../hooks/useTransactions'
-import TransactionDate from './TransactionDate'
+import { TransactionDate } from './TransactionDate'
 
 interface TransactionsContentProps {
   transactions: Transaction[]
 }
 
-const TransactionsContent = ({ transactions }: TransactionsContentProps) => {
+export const TransactionsContent = ({ transactions }: TransactionsContentProps) => {
   if (!transactions || transactions.length === 0) {
     return <Text>No transactions found</Text>
   }
@@ -39,5 +39,3 @@ const TransactionsContent = ({ transactions }: TransactionsContentProps) => {
     </Box>
   )
 }
-
-export default TransactionsContent

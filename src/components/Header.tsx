@@ -2,7 +2,7 @@ import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react'
 import { WalletConnectButton } from './WalletConnectButton'
 import explorerLogo from '../assets/explorer-logo.svg'
 
-const Header = () => {
+export const Header = () => {
   return (
     <Box bg="gray.800" py={4} borderBottom="1px solid" borderColor="gray.700">
       <Flex maxW="container.lg" mx="auto" justifyContent="space-between" alignItems="center" px={4} gap={4}>
@@ -22,5 +22,3 @@ const Header = () => {
     </Box>
   )
 }
-
-export default Header

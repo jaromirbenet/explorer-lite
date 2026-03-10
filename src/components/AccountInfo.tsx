@@ -1,7 +1,7 @@
 import { Box, Heading, Text, Spinner, VStack } from '@chakra-ui/react'
 import { useAccountInfo } from '../hooks/useAccountInfo'
 
-const AccountInfo = () => {
+export const AccountInfo = () => {
   const { data: accountData, isLoading, error } = useAccountInfo()
 
 
@@ -50,5 +50,3 @@ const AccountInfo = () => {
     </Box>
   )
 }
-
-export default AccountInfo

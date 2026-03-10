@@ -8,9 +8,9 @@ import {
 } from '@solana/wallet-adapter-react'
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom'
 import { clusterApiUrl } from '@solana/web3.js'
-import Header from './components/Header'
-import AccountInfo from './components/AccountInfo'
-import TransactionsList from './components/TransactionsList'
+import { Header } from './components/Header'
+import { AccountInfo } from './components/AccountInfo'
+import { TransactionsList } from './components/TransactionsList'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +34,7 @@ const AppContent = () => {
   )
 }
 
-const App = () => {
+export const App = () => {
   const network = WalletAdapterNetwork.Devnet
   const endpoint = useMemo(() => clusterApiUrl(network), [network])
 
@@ -50,5 +50,3 @@ const App = () => {
     </ConnectionProvider>
   )
 }
-
-export default App

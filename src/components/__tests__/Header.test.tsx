@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import Header from '../Header'
+import { Header } from '../Header'
 import { useWallet } from '@solana/wallet-adapter-react'
 
 vi.mock('@solana/wallet-adapter-react')

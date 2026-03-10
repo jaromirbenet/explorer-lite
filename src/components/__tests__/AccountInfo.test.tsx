@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import AccountInfo from '../AccountInfo'
+import { AccountInfo } from '../AccountInfo'
 import { useWallet, useConnection } from '@solana/wallet-adapter-react'
 
 vi.mock('@solana/wallet-adapter-react')
