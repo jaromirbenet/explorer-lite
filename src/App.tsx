@@ -6,6 +6,7 @@ import {
   ConnectionProvider,
   WalletProvider,
 } from '@solana/wallet-adapter-react'
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom'
 import { clusterApiUrl } from '@solana/web3.js'
 import { Header } from './components/Header'
@@ -43,9 +44,11 @@ export const App = () => {
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
-        <QueryClientProvider client={queryClient}>
-          <AppContent />
-        </QueryClientProvider>
+        <WalletModalProvider>
+          <QueryClientProvider client={queryClient}>
+            <AppContent />
+          </QueryClientProvider>
+        </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
   )
