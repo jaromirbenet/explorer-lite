@@ -1,6 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
+import WalletButtonLabel from './WalletButtonLabel'
 
 export const WalletConnectButton = () => {
   const { wallet, connect, disconnect, connecting, connected } = useWallet()
@@ -23,11 +24,7 @@ export const WalletConnectButton = () => {
       colorScheme={connected ? 'green' : 'blue'}
       data-testid="wallet-connect-btn"
     >
-      {connecting
-        ? 'Connecting...'
-        : connected
-          ? 'Disconnect'
-          : 'Connect Wallet'}
+      <WalletButtonLabel connecting={connecting} connected={connected} />
     </Button>
   )
 }

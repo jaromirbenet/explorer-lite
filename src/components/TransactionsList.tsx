@@ -1,5 +1,6 @@
 import { Box, Heading, Spinner, Text } from '@chakra-ui/react'
 import { useTransactions } from '../hooks/useTransactions'
+import TransactionsContent from './TransactionsContent'
 
 const TransactionsList = () => {
   const { data: transactions = [], isLoading, error } = useTransactions(10)
@@ -30,38 +31,7 @@ const TransactionsList = () => {
         Recent Transactions
       </Heading>
 
-      {transactions.length === 0 ? (
-        <Text>No transactions found</Text>
-      ) : (
-        <Box overflowX="auto" data-testid="transactions-table">
-          <Text fontSize="sm" color="gray.300">
-            Total transactions: {transactions.length}
-          </Text>
-          {transactions.map((tx) => (
-            <Box
-              key={tx.signature}
-              p={3}
-              mb={2}
-              bg="gray.700"
-              borderRadius="md"
-              fontSize="sm"
-            >
-              <Text color="gray.400">
-                <strong>Signature:</strong> {tx.signature.slice(0, 20)}...
-              </Text>
-              <Text color="gray.400">
-                <strong>Type:</strong> {tx.type}
-              </Text>
-              <Text color="gray.400">
-                <strong>Date:</strong>{' '}
-                {tx.timestamp
-                  ? new Date(tx.timestamp * 1000).toLocaleDateString()
-                  : 'N/A'}
-              </Text>
-            </Box>
-          ))}
-        </Box>
-      )}
+      <TransactionsContent transactions={transactions} />
     </Box>
   )
 }
