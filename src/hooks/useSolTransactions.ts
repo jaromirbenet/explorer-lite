@@ -7,7 +7,7 @@ export interface Transaction {
   type: string
 }
 
-export const useTransactions = (limit = 10) => {
+export const useSolTransactions = (limit = 10) => {
   const { publicKey, connected } = useWallet()
   const { connection } = useConnection()
 

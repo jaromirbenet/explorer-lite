@@ -1,17 +1,16 @@
 import { useMemo } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Box, Container, VStack } from '@chakra-ui/react'
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
 import {
   ConnectionProvider,
   WalletProvider,
 } from '@solana/wallet-adapter-react'
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom'
 import { clusterApiUrl } from '@solana/web3.js'
-import { Header } from './components/Header'
-import { AccountInfo } from './components/AccountInfo'
-import { TransactionsList } from './components/TransactionsList'
+import { WagmiProvider } from 'wagmi'
+import { BitcoinProvider } from './contexts/BitcoinContext'
+import { AppContent } from './components/layout/AppContent'
+import { wagmiConfig } from './wagmiConfig'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,35 +20,23 @@ const queryClient = new QueryClient({
   },
 })
 
-const AppContent = () => {
-  return (
-    <Box minH="100vh" bg="gray.900" color="white">
-      <Header />
-      <Container maxW="container.lg" py={8}>
-        <VStack gap={8}>
-          <AccountInfo />
-          <TransactionsList />
-        </VStack>
-      </Container>
-    </Box>
-  )
-}
-
 export const App = () => {
   const network = WalletAdapterNetwork.Devnet
   const endpoint = useMemo(() => clusterApiUrl(network), [network])
 
-  const wallets = useMemo(() => [new PhantomWalletAdapter()], [])
-
   return (
-    <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <QueryClientProvider client={queryClient}>
-            <AppContent />
-          </QueryClientProvider>
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <WagmiProvider config={wagmiConfig} reconnectOnMount={false}>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={[]} autoConnect>
+          <WalletModalProvider>
+            <QueryClientProvider client={queryClient}>
+              <BitcoinProvider>
+                <AppContent />
+              </BitcoinProvider>
+            </QueryClientProvider>
+          </WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    </WagmiProvider>
   )
 }

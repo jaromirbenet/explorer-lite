@@ -7,7 +7,7 @@ export interface AccountData {
   balance: number
 }
 
-export const useAccountInfo = () => {
+export const useSolAccountInfo = () => {
   const { publicKey, connected } = useWallet()
   const { connection } = useConnection()
 
